@@ -1,0 +1,4 @@
+name: MongoAPI
+version: 1.0
+author: devcode
+main: me.devcode.mongoapi.MongoAPI
