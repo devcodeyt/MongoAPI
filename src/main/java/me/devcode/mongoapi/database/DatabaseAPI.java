@@ -22,18 +22,18 @@ public class DatabaseAPI {
 
     private MongoClient mongoClient;
     private MongoDatabase mongoDatabase;
-    private MongoCollection<Document> playerCollection;
-    private File file = new File("plugins/MongoAPI", "settings.yml");
+   // private MongoCollection<Document> playerCollection;
+    private File file = new File("plugins/mongoapi", "settings.yml");
 
     public DatabaseAPI() {
         FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         cfg.options().copyDefaults(true);
-        cfg.addDefault("Host", "host");
-        cfg.addDefault("User", "user");
-        cfg.addDefault("Port", 27017);
-        cfg.addDefault("Password", "password");
-        cfg.addDefault("Database", "database");
-        cfg.addDefault("Collections", "collections");
+        cfg.addDefault("host", "host");
+        cfg.addDefault("user", "user");
+        cfg.addDefault("port", 27017);
+        cfg.addDefault("password", "password");
+        cfg.addDefault("databse", "database");
+        cfg.addDefault("collections", "collections");
 
         try {
             cfg.save(file);
@@ -41,16 +41,15 @@ public class DatabaseAPI {
             var9.printStackTrace();
         }
 
-        String host = cfg.getString("Host");
-        String user = cfg.getString("User");
-        String db = cfg.getString("Database");
-        int port = cfg.getInt("Port");
-        char[] password = cfg.getString("Password").toCharArray();
+        String host = cfg.getString("host");
+        String user = cfg.getString("user");
+        String db = cfg.getString("database");
+        int port = cfg.getInt("port");
+        char[] password = cfg.getString("password").toCharArray();
         MongoCredential mongoCredential = MongoCredential.createCredential(user, user, password);
         MongoClientOptions mongoClientOptions = MongoClientOptions.builder().build();
         MongoDriverInformation mongoDriverInformation = MongoDriverInformation.builder().build();
-        //mongoClient =  new MongoClient(new ServerAddress(host, port), mongoCredential, mongoClientOptions, mongoDriverInformation);
-        mongoClient =  new MongoClient(new ServerAddress(host, port));
+        mongoClient =  new MongoClient(new ServerAddress(host, port), mongoCredential, mongoClientOptions, mongoDriverInformation);
         mongoDatabase = this.mongoClient.getDatabase(db);
         if(mongoClient == null) {
             System.out.println("MongoDB couldnt connect.");

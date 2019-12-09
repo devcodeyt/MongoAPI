@@ -4,25 +4,30 @@ import java.util.List;
 
 public class StatsManager {
 
-    private static List<String> defaultValues;
-    private static String gameMode;
+    private List<String> defaultValues;
+    private String gameMode;
 
-    public StatsManager() {
+    private static StatsManager instance;
+
+    public static StatsManager getInstance() {
+        if(instance == null)
+            instance = new StatsManager();
+        return instance;
     }
 
-    public static void setDefaultValues(List<String> defaultValue) {
+    public void setDefaultValues(List<String> defaultValue) {
         defaultValues = defaultValue;
     }
 
-    public static List<String> getDefaultValues() {
+    public List<String> getDefaultValues() {
         return defaultValues;
     }
 
-    public static void setGameMode(String gm) {
+    public void setGameMode(String gm) {
         gameMode = gm;
     }
 
-    public static String getGameMode() {
+    public String getGameMode() {
         return gameMode;
     }
 }
