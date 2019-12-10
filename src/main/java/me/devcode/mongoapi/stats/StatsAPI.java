@@ -140,7 +140,7 @@ public class StatsAPI {
             }
 
             all = (Stats) stats.next();
-        } while (!all.getuuid().equals(uuid));
+        } while (!all.getUuid().equals(uuid));
 
         return all;
     }

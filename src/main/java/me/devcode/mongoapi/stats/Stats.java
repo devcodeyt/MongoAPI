@@ -52,8 +52,4 @@ public class Stats {
         return document;
     }
 
-    public UUID getuuid() {
-        return this.uuid;
-    }
-
 }
